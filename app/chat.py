@@ -28,17 +28,7 @@ llm = ChatGoogleGenerativeAI(
 vectorstore = create_vectorstore(texts, embeddings)
 
 # Set up memory and retrieval chain
-memory = ConversationBufferMemory(
-    memory_key="chat_history",
-    return_messages=True
-)
 
-qa_chain = ConversationalRetrievalChain.from_llm(
-    llm=llm,
-    retriever=vectorstore.as_retriever(search_kwargs={"k": 5}),
-    memory=memory,
-    verbose=True
-)
 
 
 
