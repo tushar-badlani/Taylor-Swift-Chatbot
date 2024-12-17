@@ -38,3 +38,12 @@ async def chat(query: Query):
 
     return {"answer": result['answer']}
 
+@app.post("/find", response_model= Response)
+async def find(query: Query):
+
+    system_prompt = """You are a helpful assistant, you will be given a theme and you have to find the most relevant lyrics from the dataset."""
+    result = qa_chain({
+        "question": system_prompt + query.query,
+    })
+
+    return {"answer": result['answer']}
